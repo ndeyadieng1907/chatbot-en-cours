@@ -1,8 +1,16 @@
 Chatbot ANSD - Application de Question-Réponse Basée sur les Publications de l'ANSD
+
+
 Description
+
+
+
 Le Chatbot ANSD est une application de question-réponse basée sur les publications de l'Agence Nationale de la Statistique et de la Démographie (ANSD). L'application va permettre aux utilisateurs de dialoguer avec les documents statistiques de l'ANSD pour obtenir des informations précises et pertinentes. En intégrant des fonctionnalités textuelles et vocales, ce chatbot vise à simplifier l'accès à l'information statistique pour une meilleure prise de décision.
 
 Objecctif
+
+
+
 Accès simplifié à l'information : Les utilisateurs peuvent poser des questions et obtenir des réponses directes basées sur les documents de l'ANSD.
 Multimodalité : L'application supporte les interactions textuelles et vocales, offrant ainsi une expérience utilisateur enrichie et plus flexible.
 Utilisation de technologies avancées : Utilise des modèles de langage de pointe (GPT-3.5 Turbo), ainsi que des technologies de traitement du langage naturel .
