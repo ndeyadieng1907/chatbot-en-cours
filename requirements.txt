@@ -1,0 +1,9 @@
+streamlit
+openai
+langchain
+llama_index
+pandas
+pdfplumber
+python-dotenv
+google-cloud-speech
+google-cloud-texttospeech
