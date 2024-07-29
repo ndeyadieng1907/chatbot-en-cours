@@ -1,6 +1,11 @@
 streamlit
 openai
 langchain
+openai
+docx2txt
+pypdf
+chromadb
+tiktoken
 llama_index
 pandas
 pdfplumber
