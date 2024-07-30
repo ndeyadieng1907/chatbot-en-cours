@@ -40,6 +40,8 @@ def load_db(file, chain_type, k):
 
 async def chat_with_bot(cb, query):
     try:
+        if cb is None:
+            raise ValueError("Le chatbot n'a pas été initialisé correctement.")
         loop = asyncio.get_event_loop()
         response = await loop.run_in_executor(None, lambda: cb({"question": query, "chat_history": []}))
         return response
@@ -54,21 +56,30 @@ def main():
     with col1:
         st.write("Je suis votre assistant dédié à l'ANSD. N'hésitez pas à me poser des questions sur les informations statistiques du Sénégal. Je suis là pour vous fournir des réponses précises et utiles.")
     with col2:
-        original_image = Image.open("image.png")
-        st.image(original_image)
+        try:
+            original_image = Image.open("image.png")
+            st.image(original_image)
+        except Exception as e:
+            st.error(f"Erreur lors du chargement de l'image : {str(e)}")
 
-    uploaded_file = st.file_uploader("MORTALITE-Rapport-Provisoire-RGPH5_juillet2024.pdf", type="pdf")
+    uploaded_file = st.file_uploader("Téléchargez le fichier PDF", type="pdf")
     if uploaded_file:
         file_path = os.path.join("./", uploaded_file.name)
-        with open(file_path, "wb") as f:
-            f.write(uploaded_file.read())
-        cb = load_db(file_path, "stuff", 4)
+        try:
+            with open(file_path, "wb") as f:
+                f.write(uploaded_file.read())
+            cb = load_db(file_path, "stuff", 4)
 
-        query = st.text_input("Poser une question:")
-        if st.button("Demander"):
-            result = asyncio.run(chat_with_bot(cb, query))
-            response = result.get("answer", "Désolé, je n'ai pas pu répondre à votre question.")
-            st.write("ChatBot:", response)
+            if cb is not None:
+                query = st.text_input("Poser une question:")
+                if st.button("Demander"):
+                    result = asyncio.run(chat_with_bot(cb, query))
+                    response = result.get("answer", "Désolé, je n'ai pas pu répondre à votre question.")
+                    st.write("ChatBot:", response)
+            else:
+                st.error("Le chatbot n'a pas été correctement initialisé.")
+        except Exception as e:
+            st.error(f"Erreur lors du traitement du fichier PDF : {str(e)}")
 
 if __name__ == '__main__':
     main()
