@@ -22,7 +22,7 @@ client = OpenAI(
 
 
 # st.title("Bienvenue Un centre d'excellence dans un Système statistique national fort
-RESEAUX SOCIAUX
+
 
 st.markdown("<h2 style='text-align: center; '>l'assistant vocal de l'ansd, <br> mmmm</h2>", unsafe_allow_html=True)
 st.markdown('<style>div.block-container{padding-top:2rem;}</style>',unsafe_allow_html=True)
