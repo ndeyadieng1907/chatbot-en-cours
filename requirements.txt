@@ -1,3 +1,8 @@
+streamlit==1.19.0
+openai==0.27.0
+langchain==0.0.123  # Vérifiez la version correcte
+pillow==8.4.0
+python-dotenv==0.21.0
 streamlit
 openai
 langchain
