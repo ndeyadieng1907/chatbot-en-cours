@@ -54,10 +54,10 @@ def main():
     with col1:
         st.write("Je suis votre assistant dédié à l'ANSD. N'hésitez pas à me poser des questions sur les informations statistiques du Sénégal. Je suis là pour vous fournir des réponses précises et utiles.")
     with col2:
-        original_image = Image.open("C:/Users/GAMESHOP/Downloads/image.png")
+        original_image = Image.open("image.png")
         st.image(original_image)
 
-    uploaded_file = st.file_uploader("C:/Users/GAMESHOP/Downloads/Chapitre 5 - MORTALITE-Rapport-Provisoire-RGPH5_juillet2024.pdf", type="pdf")
+    uploaded_file = st.file_uploader("MORTALITE-Rapport-Provisoire-RGPH5_juillet2024.pdf", type="pdf")
     if uploaded_file:
         file_path = os.path.join("./", uploaded_file.name)
         with open(file_path, "wb") as f:
