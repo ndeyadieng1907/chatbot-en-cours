@@ -16,7 +16,7 @@ st.set_page_config(page_title="ANSD'S bot", page_icon=":ansd-sn:",layout="wide")
 
 client = OpenAI(
     # This is the default and can be omitted
-    api_key=os.environ.get("OPENAI_API_KEY"),
+    api_key=os.environ.get("sk-proj-mS9M2ILLVhujWjwccWdTT3BlbkFJo6dm8QOPGM41PfsfNATQ"),
 )
 
 
@@ -40,7 +40,7 @@ def load_db(file, chain_type, k):
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
         docs = text_splitter.split_documents(documents)
         # define embedding
-        embeddings = OpenAIEmbeddings(openai_api_key = os.environ.get("OPENAI_API_KEY"))
+        embeddings = OpenAIEmbeddings(openai_api_key = os.environ.get("sk-proj-mS9M2ILLVhujWjwccWdTT3BlbkFJo6dm8QOPGM41PfsfNATQ"))
         # create vector database from data
         db = DocArrayInMemorySearch.from_documents(docs, embeddings)
         # define retriever
