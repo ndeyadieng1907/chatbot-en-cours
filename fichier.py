@@ -1,19 +1,21 @@
 import streamlit as st
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
-from docx import Document
+from langchain.document_loaders import PyPDFLoader
 import json
 import os
 
-# Fonction pour lire le fichier Word et créer un dictionnaire
-def lire_dictionnaire(fichier_word):
-    document = Document(fichier_word)
+# Fonction pour lire le fichier PDF et créer un dictionnaire
+def lire_dictionnaire(fichier_pdf):
+    loader = PyPDFLoader(fichier_pdf)
+    data = loader.load()
     dictionnaire = {}
 
-    for para in document.paragraphs:
-        if ':' in para.text:
-            francais, wolof = para.text.split(':', 1)
-            dictionnaire[francais.strip().lower()] = wolof.strip()
+    for page in data:
+        for line in page.page_content.split('\n'):
+            if ':' in line:
+                francais, wolof = line.split(':', 1)
+                dictionnaire[francais.strip().lower()] = wolof.strip()
 
     return dictionnaire
 
@@ -115,9 +117,9 @@ if __name__ == "__main__":
                 st.session_state.vs = vector_store
                 st.success('File uploaded, chunked and embedded successfully.')
 
-    # Charger le dictionnaire à partir d'un fichier Word
+    # Charger le dictionnaire à partir du fichier PDF
     dictionnaire = {}
-    dictionnaire_file = st.file_uploader('Upload your French-Wolof dictionary (Word file):', type=['docx'])
+    dictionnaire_file = st.file_uploader('Upload your French-Wolof dictionary (PDF file):', type=['pdf'])
     if dictionnaire_file:
         dictionnaire = lire_dictionnaire(dictionnaire_file)
 
@@ -133,4 +135,3 @@ if __name__ == "__main__":
             if dictionnaire:
                 answer_wolof = traduire_wolof(answer, dictionnaire)
                 st.write(f"Chatbot en Wolof : {answer_wolof}")
-
