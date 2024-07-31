@@ -1,11 +1,4 @@
-streamlit==1.15.0
-Pillow==9.0.0
-python-dotenv==1.0.0
-langchain==0.0.1
-openai==0.27.0
-huggingface_hub==0.13.3
-transformers==4.30.0  
- streamlit
+streamlit
 openai
 langchain
 openai
